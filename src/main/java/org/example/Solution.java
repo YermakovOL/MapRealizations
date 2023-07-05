@@ -1,6 +1,8 @@
 package org.example;
 
+import strategies.FileMapStrategy;
 import strategies.HashMapWrapperStrategy;
+import strategies.OurHashMapStrategy;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,6 +13,10 @@ public class Solution {
     StrategyContext context = new StrategyContext();
     context.setStrategy(new HashMapWrapperStrategy());
     testStrategy(context,10000);
+    context.setStrategy(new OurHashMapStrategy());
+    testStrategy(context,10000);
+    context.setStrategy(new FileMapStrategy());
+    testStrategy(context,100);
 
     }
     public static void testStrategy(StrategyContext context, long elementsNumber) {

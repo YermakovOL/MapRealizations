@@ -1,22 +1,36 @@
 package strategies;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Entry {
-    private final Long id;
-    private final String value;
-    private final Entry next;
-    private int hash;
+public class Entry implements Serializable {
+    private final Long key;
+    private String value;
 
-    public Entry(int hash, Long id, String value, Entry next) {
-        this.id = id;
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setNext(Entry next) {
+        this.next = next;
+    }
+
+    private Entry next;
+    private final int hash;
+
+    public Entry getNext() {
+        return next;
+    }
+
+    public Entry(int hash, Long key, String value, Entry next) {
+        this.key = key;
         this.value = value;
         this.next = next;
         this.hash = hash;
     }
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
     public String getValue() {
@@ -25,12 +39,12 @@ public class Entry {
 
     @Override
     public String toString() {
-        return id + "/" + value + "\n";
+        return key + "/" + value + "\n";
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id) ^ Objects.hashCode(value);
+        return Objects.hashCode(key) ^ Objects.hashCode(value);
     }
 
     @Override
@@ -38,7 +52,7 @@ public class Entry {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Entry entry = (Entry) obj;
-        if (!Objects.equals(id, entry.id)) return false;
+        if (!Objects.equals(key, entry.key)) return false;
         return Objects.equals(value, entry.value);
     }
 }

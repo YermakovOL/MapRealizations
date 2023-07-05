@@ -2,6 +2,7 @@ package org.example;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 public class Helper {
 
@@ -12,6 +13,6 @@ public class Helper {
         System.out.println(string);
     }
     public static void logException(Exception e){
-        System.err.print(e.getMessage());
+        System.err.print(Arrays.toString(e.getStackTrace())+"\n");
     }
 }
